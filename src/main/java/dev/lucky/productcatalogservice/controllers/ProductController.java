@@ -3,6 +3,7 @@ package dev.lucky.productcatalogservice.controllers;
 import dev.lucky.productcatalogservice.dtos.ProductDTO;
 import dev.lucky.productcatalogservice.models.Product;
 import dev.lucky.productcatalogservice.services.IProductService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +15,7 @@ public class ProductController {
 
     private final IProductService productService;
 
-    public ProductController(IProductService productService) {
+    public ProductController(@Qualifier("StorageProductService") IProductService productService) {
         this.productService = productService;
     }
 
@@ -35,18 +36,8 @@ public class ProductController {
 
     @PostMapping("/products")
     public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productRequestDto) {
-        Product product = new Product(productRequestDto.getId(),
-                productRequestDto.getName(),
-                productRequestDto.getDescription(),
-                productRequestDto.getPrice(),
-                productRequestDto.getCategory().convertToCategory(),
-                productRequestDto.getImageUrl()
-        );
-//
-        Product createdProduct = productService.createProduct(product);
-        productRequestDto = createdProduct.convertToDto();
-
-        return new ResponseEntity<>(productRequestDto, HttpStatus.CREATED);
+        ProductDTO responseDto = productService.createProduct(productRequestDto.convertToProduct()).convertToDto();
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 
     @GetMapping("/products/{id}")

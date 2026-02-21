@@ -45,7 +45,7 @@ public class Product extends BaseModel{
                 this.getName(),
                 this.getDescription(),
                 this.getPrice(),
-                this.getCategory() != null ? new CategoryDTO(this.getCategory().getName()) : null,
+                this.getCategory().convertToDto(),
                 this.getImageUrl()
         );
     }
