@@ -1,5 +1,6 @@
 package dev.lucky.productcatalogservice.models;
 
+import dev.lucky.productcatalogservice.dtos.CategoryDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -27,5 +28,9 @@ public class Category extends BaseModel{
 
     public Category(String name) {
         this.name = name;
+    }
+
+    public CategoryDTO convertToDto() {
+        return new CategoryDTO(this.getId(), this.getName(), this.getDescription());
     }
 }

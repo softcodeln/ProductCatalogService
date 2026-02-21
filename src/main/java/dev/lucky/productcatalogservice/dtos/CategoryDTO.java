@@ -1,11 +1,12 @@
 package dev.lucky.productcatalogservice.dtos;
 
 import dev.lucky.productcatalogservice.models.Category;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CategoryDTO {
     private Long id;
     private String name;
@@ -16,6 +17,6 @@ public class CategoryDTO {
     }
 
     public Category convertToCategory() {
-        return new Category(this.name);
+        return new Category(this.name, this.description, null);
     }
 }

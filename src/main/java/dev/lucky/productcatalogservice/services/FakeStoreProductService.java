@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.stream.Stream;
 
-@Service
+@Service("FakeStoreProductService")
 public class FakeStoreProductService implements IProductService{
     private final RestTemplate restTemplate;
     private final FakeStoreAPIClient fakeStoreAPIClient;
