@@ -1,6 +1,5 @@
 package dev.lucky.productcatalogservice.models;
 
-import dev.lucky.productcatalogservice.dtos.CategoryDTO;
 import dev.lucky.productcatalogservice.dtos.FakeStoreProductDTO;
 import dev.lucky.productcatalogservice.dtos.ProductDTO;
 import jakarta.persistence.Entity;
