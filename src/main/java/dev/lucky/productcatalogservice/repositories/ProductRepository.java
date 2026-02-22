@@ -17,7 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     /**
      * Custom @Query method - read-only operation
-     * @Transactional with readOnly = true improves performance by:
+     * Transactional with readOnly = true improves performance by:
      * - Telling Hibernate this won't modify data (no flush needed)
      * - Allowing database to optimize the query
      */
