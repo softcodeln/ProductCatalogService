@@ -5,6 +5,7 @@ import dev.lucky.productcatalogservice.models.Product;
 import dev.lucky.productcatalogservice.repositories.CategoryRepository;
 import dev.lucky.productcatalogservice.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Service("StorageProductService")
 @AllArgsConstructor
+@Primary
 public class StorageProductService implements IProductService{
 
     private final ProductRepository productRepository;

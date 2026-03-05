@@ -3,7 +3,6 @@ package dev.lucky.productcatalogservice.controllers;
 import dev.lucky.productcatalogservice.dtos.ProductDTO;
 import dev.lucky.productcatalogservice.models.Product;
 import dev.lucky.productcatalogservice.services.IProductService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,7 @@ public class ProductController {
 
     private final IProductService productService;
 
-    public ProductController(@Qualifier("StorageProductService") IProductService productService) {
+    public ProductController(IProductService productService) {
         this.productService = productService;
     }
 
@@ -42,8 +41,11 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable("id") Long id) {
-        if (id < 1) {
+        if (id < 0) {
             throw new IllegalArgumentException("Invalid product ID: " + id);
+        }
+        if (id == 0) {
+            throw new IllegalArgumentException("Product exist with positive Id's only.");
         }
         Product product = productService.getProductById(id);
         if (product == null) {
