@@ -1,11 +1,13 @@
 package dev.lucky.productcatalogservice.dtos;
 
 import dev.lucky.productcatalogservice.models.Product;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 public class ProductDTO {
     private Long    id;
     private String  name;
