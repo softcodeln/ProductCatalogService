@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
@@ -28,4 +29,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     String getDescriptionWhereIdIs(@Param("id") long id);
 
     Page<Product> findByName(String query, Pageable pageable);
+
+    Optional<Product> getProductsById(Long id);
 }

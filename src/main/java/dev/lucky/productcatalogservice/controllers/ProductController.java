@@ -75,5 +75,10 @@ public class ProductController {
         product = productService.replaceProduct(productId, product);
         return new ResponseEntity<>(product.convertToDto(), HttpStatus.OK);
     }
+    @GetMapping("/{productId}/{userId}")
+    public ProductDTO getProductBasedOnUserScope(@PathVariable("productId") Long productId, @PathVariable("userId") Long userId) {
+        Product product = productService.getProductBaseOnUserScope(productId, userId);
+        return product.convertToDto();
+    }
 
 }
